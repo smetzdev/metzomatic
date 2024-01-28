@@ -16,6 +16,11 @@ Following env vars are expected (can be loaded via a root .env file)
 ```bash
 TOGGL_API_TOKEN # Needed for authorizing any TogglAPI call
 TOGGL_WORKSPACE_ID # For use in any TogglAPI call
+GMAIL_USER_EMAIL # Emails are send from this mail-account
+GMAIL_CLIENT_ID # ClientID of your Google Workspace API Client
+GMAIL_CLIENT_SECRET # ClientID of your Google Workspace API Client
+GMAIL_REFRESH_TOKEN # Refresh token for clientId/secret combination use google oAuth Playground
+GMAIL_FROM_NAME # (OPTIONAL) Name form the "from" in the email
 ```
 
 ## Running the app

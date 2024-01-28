@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TogglModule } from './toggl/toggl.module';
+import { GmailModule } from './gmail/gmail.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -8,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     TogglModule,
+    GmailModule,
   ],
 })
 export class AppModule {}
