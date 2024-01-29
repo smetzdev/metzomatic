@@ -14,13 +14,34 @@ $ npm install
 Following env vars are expected (can be loaded via a root .env file)
 
 ```bash
-TOGGL_API_TOKEN # Needed for authorizing any TogglAPI call
-TOGGL_WORKSPACE_ID # For use in any TogglAPI call
-GMAIL_USER_EMAIL # Emails are send from this mail-account
-GMAIL_CLIENT_ID # ClientID of your Google Workspace API Client
-GMAIL_CLIENT_SECRET # ClientID of your Google Workspace API Client
-GMAIL_REFRESH_TOKEN # Refresh token for clientId/secret combination use google oAuth Playground
-GMAIL_FROM_NAME # (OPTIONAL) Name form the "from" in the email
+ # Needed for authorizing any TogglAPI call
+TOGGL_API_TOKEN
+
+ # For use in any TogglAPI call
+TOGGL_WORKSPACE_ID
+
+ # Emails are send from this mail-account
+GMAIL_USER_EMAILa
+
+ # ClientID of your Google Workspace API Client
+GMAIL_CLIENT_ID
+
+ # ClientID of your Google Workspace API Client
+GMAIL_CLIENT_SECRET
+
+ # Refresh token for clientId/secret combination use google oAuth Playground
+GMAIL_REFRESH_TOKEN
+
+ # (OPTIONAL) Name form the "from" in the email
+GMAIL_FROM_NAME
+
+ # Create a Slack App in workspace,
+ # give it chat:write/channel:write/im:write permissions, put token here
+ # Use the bot token to write as bot, use user token to write as user
+SLACK_AUTH_TOKEN
+
+ # Your MemberId in your workspace, this is that your app can send yourself messages
+SLACK_USER_ID
 ```
 
 ## Running the app
