@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Transporter, createTransport } from 'nodemailer';
+import { google, gmail_v1 } from 'googleapis';
+import { OAuth2Client } from 'google-auth-library';
 import { SendEmailDto } from './dto/send-email.dto';
+import { GmailMessageEncoder } from './lib/gmail-message-encoder';
 
 /**
  * Service for sending emails using Gmail.
@@ -18,8 +20,8 @@ export class GmailService {
   private readonly CLIENT_SECRET: string;
   /** The refresh token for OAuth2 authentication. */
   private readonly REFRESH_TOKEN: string;
-  /** The transporter used for sending emails. */
-  private readonly transporter: Transporter;
+  /** The Gmail client used for sending emails. */
+  private gmailClient: gmail_v1.Gmail;
 
   /**
    * @param configService The configuration service used to retrieve Gmail-related env vars.
@@ -31,16 +33,13 @@ export class GmailService {
     this.CLIENT_SECRET = this.configService.get<string>('GMAIL_CLIENT_SECRET');
     this.REFRESH_TOKEN = this.configService.get<string>('GMAIL_REFRESH_TOKEN');
 
-    this.transporter = createTransport({
-      service: 'gmail',
-      auth: {
-        type: 'OAuth2',
-        user: this.USER_EMAIL,
-        clientId: this.CLIENT_ID,
-        clientSecret: this.CLIENT_SECRET,
-        refreshToken: this.REFRESH_TOKEN,
-      },
+    // Setup the Gmail client with oAuth2.
+    const oAuth2Client = new OAuth2Client(this.CLIENT_ID, this.CLIENT_SECRET);
+    oAuth2Client.setCredentials({
+      refresh_token: this.REFRESH_TOKEN,
     });
+
+    this.gmailClient = google.gmail({ version: 'v1', auth: oAuth2Client });
   }
 
   /**
@@ -53,11 +52,20 @@ export class GmailService {
       ? `"${this.USER_NAME}" <${this.USER_EMAIL}>`
       : this.USER_EMAIL;
 
-    return this.transporter.sendMail({
+    // Gmail expects emails to be base64url encoded.
+    // https://developers.google.com/gmail/api/guides/sending
+    const encodedMessage = GmailMessageEncoder.getBase64Mail({
       from,
       to: emailDto.to,
       subject: emailDto.subject,
       text: emailDto.text,
+    });
+
+    return this.gmailClient.users.messages.send({
+      userId: 'me',
+      requestBody: {
+        raw: encodedMessage,
+      },
     });
   }
 }
