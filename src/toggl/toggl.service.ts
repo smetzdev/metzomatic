@@ -33,7 +33,7 @@ export class TogglService {
     this.WORKSPACE_ID = this.configService.get<string>('TOGGL_WORKSPACE_ID');
     this.API_TOKEN = this.configService.get<string>('TOGGL_API_TOKEN');
 
-    this.togglApiUrl = `https://toggl.com/reports/api/v2/details?workspace_id=${this.WORKSPACE_ID}`;
+    this.togglApiUrl = `https://api.track.toggl.com/reports/api/v3/workspace/${this.WORKSPACE_ID}/search/time_entries.pdf`;
 
     this.httpConfig = {
       headers: {
