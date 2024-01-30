@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TogglModule } from './toggl/toggl.module';
-import { GmailModule } from './gmail/gmail.module';
 import { ConfigModule } from '@nestjs/config';
 import { SlackModule } from './slack/slack.module';
+import { GoogleCloudModule } from './google-cloud/google-cloud.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -23,8 +23,8 @@ import * as Joi from 'joi';
       }),
     }),
     TogglModule,
-    GmailModule,
     SlackModule,
+    GoogleCloudModule,
   ],
 })
 export class AppModule {}
