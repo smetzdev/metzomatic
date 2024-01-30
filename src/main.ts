@@ -9,6 +9,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT');
 
+  // Setup Swagger (OpenAPI), available at /api
   const config = new DocumentBuilder()
     .setTitle('Metzomatic')
     .setDescription('Automations for me')
@@ -17,6 +18,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
+  // Validate incoming requests with class-validator using the modules dto's
   app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(port);
