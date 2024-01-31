@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GmailService } from './gmail.service';
 import { ConfigService } from '@nestjs/config';
+import { AuthService } from '../auth/auth.service';
 import { SendEmailDto } from './dto/send-email.dto';
 import { GmailMessageEncoder } from './lib/gmail-message-encoder';
 
@@ -12,6 +13,12 @@ describe('GmailService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         GmailService,
+        {
+          provide: AuthService,
+          useValue: {
+            oauth2Client: {},
+          },
+        },
         {
           provide: ConfigService,
           useValue: {

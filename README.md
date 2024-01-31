@@ -20,17 +20,17 @@ TOGGL_API_TOKEN
  # For use in any TogglAPI call
 TOGGL_WORKSPACE_ID
 
- # Emails are send from this mail-account
-GMAIL_USER_EMAILa
+ # ClientID of your Google Workspace API Client
+GCLOUD_CLIENT_ID
 
  # ClientID of your Google Workspace API Client
-GMAIL_CLIENT_ID
-
- # ClientID of your Google Workspace API Client
-GMAIL_CLIENT_SECRET
+GCLOUD_CLIENT_SECRET
 
  # Refresh token for clientId/secret combination use google oAuth Playground
-GMAIL_REFRESH_TOKEN
+GCLOUD_REFRESH_TOKEN
+
+ # Emails are send from this mail-account
+GMAIL_USER_EMAIL
 
  # (OPTIONAL) Name form the "from" in the email
 GMAIL_FROM_NAME
