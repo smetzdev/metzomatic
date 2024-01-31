@@ -42,6 +42,9 @@ SLACK_AUTH_TOKEN
 
  # Your MemberId in your workspace, this is that your app can send yourself messages
 SLACK_USER_ID
+
+# Your "AddToThing" Email related to your account checkout the Things Settings for more Info
+THINGS_EMAIL
 ```
 
 ## Running the app
