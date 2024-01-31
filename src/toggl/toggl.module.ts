@@ -7,5 +7,6 @@ import { TogglController } from './toggl.controller';
   imports: [HttpModule],
   providers: [TogglService],
   controllers: [TogglController],
+  exports: [TogglService],
 })
 export class TogglModule {}
