@@ -3,3 +3,6 @@ dist
 .DS_Store
 .env
 *.production.e2e-spec.ts
+
+# REPL
+.nestjs_repl_history
