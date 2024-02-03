@@ -58,7 +58,7 @@ $ npm run start:dev
 
 # REPL mode
 # Checkcout src/repl/repl.ts to see some predefined vars available in repl context
-npm run start:repl || npm run start:repl -- --watch
+$ npm run start:repl || npm run start:repl -- --watch
 
 # production mode
 $ npm run start:prod

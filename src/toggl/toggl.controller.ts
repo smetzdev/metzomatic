@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Param } from '@nestjs/common';
+import { Controller, Get, Header, Param, ParseIntPipe } from '@nestjs/common';
 import { TogglService } from './toggl.service';
 import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
 
@@ -17,8 +17,8 @@ export class TogglController {
       'application/pdf': {},
     },
   })
-  getLastMonthReport(@Param('clientId') clientId: string) {
-    return this.togglService.getLastMonthReport(+clientId);
+  getLastMonthReport(@Param('clientId', ParseIntPipe) clientId: number) {
+    return this.togglService.getLastMonthReport(clientId);
   }
 
   @Get('reports/current-month/:clientId')
@@ -31,7 +31,7 @@ export class TogglController {
       'application/pdf': {},
     },
   })
-  getCurrentMonthReport(@Param('clientId') clientId: string) {
-    return this.togglService.getCurrentMonthReport(+clientId);
+  getCurrentMonthReport(@Param('clientId', ParseIntPipe) clientId: number) {
+    return this.togglService.getCurrentMonthReport(clientId);
   }
 }
