@@ -31,7 +31,7 @@ describe('TogglController', () => {
   describe('getLastMonthReport', () => {
     it('should call the getLastMonthReport method of TogglService and return the result', async () => {
       // Arrange
-      const clientId = '123';
+      const clientId = 123;
 
       // Act
       await controller.getLastMonthReport(clientId);
@@ -44,7 +44,7 @@ describe('TogglController', () => {
   describe('getCurrentMonthReport', () => {
     it('should call the getCurrentMonthReport method of TogglService and return the result', async () => {
       // Arrange
-      const clientId = '123';
+      const clientId = 123;
 
       // Act
       await controller.getCurrentMonthReport(clientId);
