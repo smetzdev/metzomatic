@@ -6,3 +6,6 @@ dist
 
 # REPL
 .nestjs_repl_history
+
+# SQLite
+/*.db

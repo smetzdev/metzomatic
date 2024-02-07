@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TogglModule } from './toggl/toggl.module';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { SlackModule } from './slack/slack.module';
 import { GoogleCloudModule } from './google-cloud/google-cloud.module';
 import { ThingsModule } from './things/things.module';
 import { WebhooksModule } from './webhooks/webhooks.module';
+import { ClientsModule } from './clients/clients.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -24,11 +26,18 @@ import * as Joi from 'joi';
         PORT: Joi.number().default(3000),
       }),
     }),
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'metzomatic.db',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
     TogglModule,
     SlackModule,
     GoogleCloudModule,
     ThingsModule,
     WebhooksModule,
+    ClientsModule,
   ],
 })
 export class AppModule {}
