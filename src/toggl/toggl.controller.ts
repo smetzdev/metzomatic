@@ -1,6 +1,6 @@
 import { Controller, Get, Header, Param, ParseIntPipe } from '@nestjs/common';
 import { TogglService } from './toggl.service';
-import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('toggl')
 @ApiTags('Toggl')
@@ -9,28 +9,12 @@ export class TogglController {
 
   @Get('reports/last-month/:clientId')
   @Header('Content-Type', 'application/pdf')
-  @ApiOperation({ summary: 'Get last month report in PDF format' })
-  @ApiResponse({
-    status: 200,
-    description: 'Successfully retrieved the PDF report',
-    content: {
-      'application/pdf': {},
-    },
-  })
   getLastMonthReport(@Param('clientId', ParseIntPipe) clientId: number) {
     return this.togglService.getLastMonthReport(clientId);
   }
 
   @Get('reports/current-month/:clientId')
   @Header('Content-Type', 'application/pdf')
-  @ApiOperation({ summary: 'Get current month report in PDF format' })
-  @ApiResponse({
-    status: 200,
-    description: 'Successfully retrieved the PDF report',
-    content: {
-      'application/pdf': {},
-    },
-  })
   getCurrentMonthReport(@Param('clientId', ParseIntPipe) clientId: number) {
     return this.togglService.getCurrentMonthReport(clientId);
   }
